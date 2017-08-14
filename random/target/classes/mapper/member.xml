@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="oh.sung.hwan">
+	<insert id="userInsert" parameterType="member" useGeneratedKeys="true" keyProperty="mem_no">
+		insert into member values(null,#{email}, #{pass}, #{name}, #{tel}, #{role})
+	</insert>
+	
+	<select id="userLogin" parameterType="member" resultType="member">
+		select * from member where email = #{email} and pass = #{pass}
+	</select>
+	
+	<select id="securityLogin" resultType="map">
+		select email as username, pass as password, name, tel, role as authority from member where email = #{username}
+	</select>
+	
+	<select id="emailCheck" parameterType="String" resultType="String">
+		select count(*) from member where email = #{email}
+	</select>
+</mapper>

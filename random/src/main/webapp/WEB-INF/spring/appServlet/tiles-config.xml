@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+      "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+      "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+      
+
+<tiles-definitions>
+	<!-- 메인화면 뷰 -->
+	<definition name="mainLayout" template="/WEB-INF/Layout/mainLayout.jsp">
+		<put-attribute name="top" value="/WEB-INF/top/top.jsp"/>
+		<put-attribute name="content" value="/WEB-INF/mainView/mainView.jsp"/>
+	</definition>
+	<!-- 회원가입화면 -->
+	<definition name="signUp" template="/WEB-INF/Layout/mainLayout.jsp">
+		<put-attribute name="top" value="/WEB-INF/top/top.jsp"/>
+		<put-attribute name="content" value="/WEB-INF/member/memberInsert.jsp"></put-attribute>
+	</definition>
+	<!-- 로그인 화면 -->
+	<definition name="login" template="/WEB-INF/Layout/mainLayout.jsp">
+		<put-attribute name="top" value="/WEB-INF/top/top.jsp"/>
+		<put-attribute name="content" value="/WEB-INF/login/login.jsp"></put-attribute>
+	</definition>
+	
+	<!-- 지도 화면 -->
+	<definition name="mapView" template="/WEB-INF/Layout/mainLayout.jsp">
+	    <put-attribute name="top" value="/WEB-INF/top/top.jsp"/>
+	    <put-attribute name="content" value="/WEB-INF/map/mapView.jsp"/>
+	</definition>
+	<!-- 음식 랜덤 지도 -->
+	<definition name="foodView" template="/WEB-INF/Layout/mainLayout.jsp">
+	    <put-attribute name="top" value="/WEB-INF/top/top.jsp"/>
+	    <put-attribute name="content" value="/WEB-INF/map/foodView.jsp"/>
+	</definition>
+	<!-- 크롤링 -->
+	<definition name="crawling" template="/WEB-INF/Layout/mainLayout.jsp">
+	    <put-attribute name="top" value="/WEB-INF/top/top.jsp"/>
+	    <put-attribute name="content" value="/WEB-INF/map/foodView.jsp"/>
+	</definition>
+	<!-- 게시판 -->
+	<definition name="boardView" template="/WEB-INF/Layout/mainLayout.jsp">
+	    <put-attribute name="top" value="/WEB-INF/top/top.jsp"/>
+	    <put-attribute name="content" value="/WEB-INF/board/board.jsp"></put-attribute>
+	</definition>
+</tiles-definitions> 

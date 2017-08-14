@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<security:http pattern="/**/*.js" security="none"/>
+<security:http pattern="/**/*.css" security="none"/>
+<security:http pattern="/**/*.jpg" security="none"/>
+<security:http pattern="/**/*.png" security="none"/>
+<security:http pattern="/**/*.gif" security="none"/>
+
+<security:http auto-config="true" use-expressions="true">
+	<security:intercept-url pattern="/resources/**" access="permitAll"/>
+	<security:intercept-url pattern="/main.do" access="permitAll"/>
+	<security:intercept-url pattern="/signUp.do" access="permitAll"/>
+	<security:intercept-url pattern="/login.do" access="permitAll"/>
+	<security:intercept-url pattern="/emailCheck.do" access="permitAll"/>
+	<security:intercept-url pattern="/crawling.do" access="hasRole('ROLE_USER')"/>
+	<security:intercept-url pattern="/map/mapChoose.do*" access="hasRole('ROLE_USER')"/>
+	<security:intercept-url pattern="/map/mapView.do" access="hasRole('ROLE_USER')"/>
+	<security:intercept-url pattern="/**" access="hasAnyRole('ROLE_ADMIN,ROLE_USER')"  requires-channel="https"/>
+	
+	
+	<security:form-login
+		username-parameter="email"
+		password-parameter="pass"
+		login-page="/login.do"
+		default-target-url="/main.do"
+		authentication-failure-url="/login.do?fail=true"
+	/>
+	<security:logout delete-cookies="true"
+		logout-success-url="/main.do"
+		logout-url="/logout.do"
+		invalidate-session="true"	
+	/>
+	 <security:port-mappings>
+		<security:port-mapping http="8088" https="8443"/>
+	</security:port-mappings>
+	
+	<security:session-management invalid-session-url="/login.do">
+	    <security:concurrency-control max-sessions="1" expired-url="/login.do"/>
+	</security:session-management>
+</security:http>
+
+
+
+<!-- 아래의 설정이 없으면 오류가 생긴다. -->
+<security:authentication-manager>
+	<security:authentication-provider ref="customProvider">
+	</security:authentication-provider>
+</security:authentication-manager>
+
+<bean id="customProvider" class="oh.sung.hwan.fw.CustomAuthenticationProvider">
+	<constructor-arg ref="loginService"/>
+	<constructor-arg ref="passwordEncoder"/>
+</bean>
+<bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.ShaPasswordEncoder">
+	<constructor-arg name="strength" value="256"/>
+</bean>
+<bean id="loginService" class="oh.sung.hwan.member.SecurityLoginService"/>
+<import resource="servlet-context.xml"/>
+</beans>

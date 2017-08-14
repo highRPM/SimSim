@@ -1,0 +1,10 @@
+@CHARSET "EUC-KR";
+
+#infoWindow0,#infoWindow1,#infoWindow2,#infoWindow3,#infoWindow4,#infoWindow5,#infoWindow6,#infoWindow7,#infoWindow8,#infoWindow9,#infoWindow10,#infoWindow11,#infoWindow12,#infoWindow13,#infoWindow14 {
+	background-color: white;
+	position: absolute;
+	top: -73px;
+	left: -13px;
+	border-radius: 5px;
+	opacity: 0.85;
+}

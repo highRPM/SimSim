@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<typeAliases>
+		<typeAlias type="oh.sung.hwan.member.MemberDTO" alias="member"/>
+		<typeAlias type="oh.sung.hwan.member.SecurityLoginVO" alias="secuMem"/>
+		<typeAlias type="oh.sung.hwan.board.BoardViewVO" alias="boardVO"/>
+	</typeAliases>
+
+	<mappers>
+		<mapper resource="mapper/member.xml"/>
+		<mapper resource="mapper/comment.xml"/>
+		<mapper resource="mapper/board.xml"/>
+	</mappers>
+</configuration>

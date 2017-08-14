@@ -1,0 +1,10 @@
+@CHARSET "EUC-KR";
+
+.foodCustomOverlay{
+	background-color: #00FFFF;
+	position: absolute;
+	top: -50px;
+	left: -33px;
+	border-radius: 6px;
+	opacity: 0.9;
+}
